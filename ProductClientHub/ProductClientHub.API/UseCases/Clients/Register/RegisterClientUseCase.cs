@@ -9,9 +9,14 @@ public class RegisterClientUseCase
     public ResponseClientJson Execute(ResquestClientJson resquest)
     {
 
-        var validato = new RegisterClientValidator();
+        var validator= new RegisterClientValidator();
 
-        v
+        var result = validator.Validate(resquest);  
+
+        if (result.IsValid == false)
+        {
+            throw new ArgumentException("ERRO NOS DADOS RECEBIDOS");
+        }
 
         return new ResponseClientJson();
     }
