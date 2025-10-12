@@ -4,60 +4,59 @@ using ProductClientHub.Comunication.Requests;
 using ProductClientHub.Comunication.Responses;
 using ProductClientHub.Exceptions.ExceptionsBase;
 
-namespace ProductClientHub.API.Controllers
+namespace ProductClientHub.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ClientsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ClientsController : ControllerBase
+    [HttpPost]
+    [ProducesResponseType(typeof(ResponseClientJson), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status400BadRequest)]
+    public IActionResult Register([FromBody] ResquestClientJson resquest)
     {
-        [HttpPost]
-        [ProducesResponseType(typeof(ResponseClientJson), StatusCodes.Status201Created)]
-        [ProducesResponseType(typeof(ResponseErrorMessagesJson), StatusCodes.Status400BadRequest)]
-        public IActionResult Register([FromBody] ResquestClientJson resquest)
+        try
         {
-            try
-            {
-                var useCase = new RegisterClientUseCase();
+            var useCase = new RegisterClientUseCase();
 
-                var response = useCase.Execute(resquest);
+            var response = useCase.Execute(resquest);
 
-                return Created(string.Empty, response);
-            }
-            catch (ProductsClientsHubExceptions ex)
-            {
-                var errors = ex.GetErrors();
-
-                return BadRequest(new ResponseErrorMessagesJson(errors));
-            }
-            catch
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseErrorMessagesJson("ERRO DESCONHECIDO"));
-            }
+            return Created(string.Empty, response);
         }
-
-        [HttpPut]
-        public IActionResult Update()
+        catch (ProductClientHubException ex)
         {
-            return Ok();
-        }
+            var errors = ex.GetErrors();
 
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            return Ok();
+            return BadRequest(new ResponseErrorMessagesJson(errors));
         }
+        catch
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, new ResponseErrorMessagesJson("ERRO DESCONHECIDO"));
+        }
+    }
 
-        [HttpGet]
-        [Route("{id}")]
-        public IActionResult GetById([FromRoute] Guid id)
-        {
-            return Ok();
-        }
+    [HttpPut]
+    public IActionResult Update()
+    {
+        return Ok();
+    }
 
-        [HttpDelete]
-        public IActionResult Delete()
-        {
-            return Ok();
-        }
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        return Ok();
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    public IActionResult GetById([FromRoute] Guid id)
+    {
+        return Ok();
+    }
+
+    [HttpDelete]
+    public IActionResult Delete()
+    {
+        return Ok();
     }
 }
