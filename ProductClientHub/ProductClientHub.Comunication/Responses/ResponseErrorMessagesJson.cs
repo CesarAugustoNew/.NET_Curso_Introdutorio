@@ -1,12 +1,15 @@
-﻿namespace ProductClientHub.Comunication.Responses
-{
-    public class ResponseErrorMessagesJson
-    {
-        public List<string> Errors { get; private set; }
+﻿namespace ProductClientHub.Comunication.Responses;
 
-        public ResponseErrorMessagesJson(string message)
-        {
-            Errors = [message];
-        }
+public class ResponseErrorMessagesJson
+{
+    public List<string> Errors { get; private set; }
+
+    public ResponseErrorMessagesJson(string message)
+    {
+        Errors = [message];
+    }
+    public ResponseErrorMessagesJson(List<string> messages)
+    {
+        Errors = messages;
     }
 }
