@@ -1,10 +1,9 @@
 ﻿using FluentValidation;
-using ProductClientHub.Comunication.Requests;
-using ProductClientHub.Comunication.Responses;
+using ResponseShortsClientJson = ProductClientHub.Comunication.Requests.ResponseShortsClientJson;
 
 namespace ProductClientHub.API.UseCases.Clients.Register;
 
-public class RegisterClientValidator : AbstractValidator<ResquestClientJson>
+public class RegisterClientValidator : AbstractValidator<ResponseShortsClientJson>
 {
     public RegisterClientValidator()
     {

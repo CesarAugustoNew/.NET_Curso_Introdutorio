@@ -1,10 +1,9 @@
-﻿namespace ProductClientHub.Comunication.Requests;
+﻿namespace ProductClientHub.Comunication.Responses;
 
 public class ResponseShortsClientJson
 {
-    public readonly string Email;
-
     public Guid Id { get; set; }
 
     public string Name { get; set; } = string.Empty;
+
 }

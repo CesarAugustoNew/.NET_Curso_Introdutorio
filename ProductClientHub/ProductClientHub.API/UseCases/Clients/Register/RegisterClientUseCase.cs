@@ -1,18 +1,17 @@
 ﻿using ProductClientHub.API.Entities;
 using ProductClientHub.API.Infraestructure;
-using ProductClientHub.Comunication.Requests;
-using ProductClientHub.Comunication.Responses;
 using ProductClientHub.Exceptions.ExceptionsBase;
+using ResponseShortsClientJson = ProductClientHub.Comunication.Requests.ResponseShortsClientJson;
 
 namespace ProductClientHub.API.UseCases.Clients.Register;
 
 public class RegisterClientUseCase
 {
-    public ResponseClientJson Execute(ResquestClientJson resquest)
+    public ResponseShortsClientJson Execute(ResponseShortsClientJson resquest)
     {
         Validate(resquest);
 
-        var dbContext = new ProductsClientsHubDbContext();
+        var dbContext = new ProductClientHubDbContext();
 
         var entity = new Client
         {
@@ -25,14 +24,14 @@ public class RegisterClientUseCase
 
         dbContext.SaveChanges();
 
-        return new ResponseClientJson()
+        return new ResponseShortsClientJson()
         {
             Id = entity.Id,
             Name = entity.Name,
         };
     }
 
-    private void Validate(ResquestClientJson resquest)
+    private void Validate(ResponseShortsClientJson resquest)
     {
         var validator = new RegisterClientValidator();
 
