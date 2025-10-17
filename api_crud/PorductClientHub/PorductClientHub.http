@@ -1,0 +1,6 @@
+@PorductClientHub_HostAddress = http://localhost:5217
+
+GET {{PorductClientHub_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
