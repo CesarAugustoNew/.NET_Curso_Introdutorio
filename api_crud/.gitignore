@@ -1,0 +1,57 @@
+
+## Ignorar arquivos do Visual Studio
+
+.vs/
+
+*.user
+
+*.suo
+
+*.userosscache
+
+*.sln.docstates
+
+*.vcxproj.filters
+
+*.vcxproj.user
+
+
+
+# Arquivos de build
+
+bin/
+
+obj/
+
+[Bb]uild/
+
+[Bb]uilds/
+
+
+
+# Arquivos de cache
+
+FileContentIndex/
+
+*.vsidx
+
+*.vspscc
+
+
+
+# Outros arquivos temporários
+
+_ReSharper.*
+
+*.aps
+
+*.ncb
+
+*.opensdf
+
+*.sdf
+
+*.cachefile
+
+*.VC.db
+
